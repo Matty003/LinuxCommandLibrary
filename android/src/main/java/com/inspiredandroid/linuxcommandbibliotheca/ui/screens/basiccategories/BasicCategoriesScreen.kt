@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterialApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.inspiredandroid.linuxcommandbibliotheca.ui.screens.basiccategories
 
@@ -7,10 +7,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.ListItem
-import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -42,8 +42,8 @@ fun BasicCategoriesScreen(
     LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 300.dp)) {
         items(viewModel.basicCategories) { basicCategory ->
             ListItem(
-                text = { Text(basicCategory.title) },
-                icon = {
+                headlineText = { Text(basicCategory.title) },
+                leadingContent = {
                     Icon(
                         painterResource(basicCategory.getIconResource()),
                         contentDescription = null,

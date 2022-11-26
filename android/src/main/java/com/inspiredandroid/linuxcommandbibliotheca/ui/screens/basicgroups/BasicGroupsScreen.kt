@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterialApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.inspiredandroid.linuxcommandbibliotheca.ui.screens.basicgroups
 
@@ -6,10 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.ListItem
-import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.inspiredandroid.linuxcommandbibliotheca.getIconResource
-import com.inspiredandroid.linuxcommandbibliotheca.ui.shared.CommandView
+import com.inspiredandroid.linuxcommandbibliotheca.ui.composables.CommandView
 import com.linuxcommandlibrary.shared.databaseHelper
 import com.linuxcommandlibrary.shared.getCommandList
 import databases.BasicGroup
@@ -57,8 +57,8 @@ fun BasicGroupsScreen(
 @Composable
 fun BasicGroupColumn(basicGroup: BasicGroup, onNavigate: (String) -> Unit = {}) {
     var collapsed by remember { mutableStateOf(false) }
-    ListItem(text = { Text(basicGroup.description) },
-        icon = {
+    ListItem(headlineText = { Text(basicGroup.description) },
+        leadingContent = {
             Icon(
                 painterResource(basicGroup.getIconResource()),
                 contentDescription = null,

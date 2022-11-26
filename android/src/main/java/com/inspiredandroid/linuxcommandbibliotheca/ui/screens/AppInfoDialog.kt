@@ -6,10 +6,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -47,13 +48,12 @@ fun AppInfoDialog(showDialog: MutableState<Boolean>) {
         val uriHandler = LocalUriHandler.current
         Dialog(onDismissRequest = { showDialog.value = false }) {
             Card(
-                elevation = 8.dp,
                 shape = RoundedCornerShape(6.dp)
             ) {
                 Column(modifier = Modifier.fillMaxSize()) {
                     Text(
                         stringResource(R.string.app_name),
-                        style = MaterialTheme.typography.h5,
+                        style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(8.dp)
                     )
                     Button(content = { Text("Rate the app") }, onClick = {
@@ -65,19 +65,19 @@ fun AppInfoDialog(showDialog: MutableState<Boolean>) {
                             .weight(1f)
                             .verticalScroll(rememberScrollState())
                     ) {
-                        Text("Man pages", style = MaterialTheme.typography.h6)
+                        Text("Man pages", style = MaterialTheme.typography.titleSmall)
                         Text("Licence information about the man page is usually specified in the man detail page under the category Author, Copyright or Licence. If there is no information on the page you can find the information in the man page source file on your linux system. If you have questions or can't find what you need, you can contact me at sschubert89@gmail.com.")
 
-                        Text("TLDR pages", style = MaterialTheme.typography.h6)
+                        Text("TLDR pages", style = MaterialTheme.typography.titleSmall)
                         Text(
                             "The MIT License (MIT) Copyright (c) 2014 the TLDR team and contributors Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
                         )
                         Text(
                             "Thanks to commandlinefu.com for the one-liners and icons8.com for the icons",
-                            style = MaterialTheme.typography.h6
+                            style = MaterialTheme.typography.titleSmall
                         )
                     }
-                    Button(
+                    TextButton(
                         content = { Text("OK") },
                         modifier = Modifier
                             .align(Alignment.End)

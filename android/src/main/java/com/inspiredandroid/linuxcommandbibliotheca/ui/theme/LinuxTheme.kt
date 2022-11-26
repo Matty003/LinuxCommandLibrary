@@ -1,10 +1,10 @@
 package com.inspiredandroid.linuxcommandbibliotheca.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Typography
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.inspiredandroid.linuxcommandbibliotheca.R
+
 
 /* Copyright 2022 Simon Schubert
  *
@@ -33,16 +34,16 @@ import com.inspiredandroid.linuxcommandbibliotheca.R
 @Composable
 fun LinuxTheme(content: @Composable () -> Unit) {
     val darkMode = isSystemInDarkTheme()
-    val ourDarkColorScheme = darkColors(
+    val ourDarkColorScheme = darkColorScheme(
         primary = Color(0xFFe45151),
         secondary = Color.White,
         background = Color(0xFF262626)
     )
-    val ourLightColorScheme = lightColors(
+    val ourLightColorScheme = lightColorScheme(
         primary = Color(0xFFe45151),
         secondary = Color.Black
     )
-    val colorSchema = if (darkMode) ourDarkColorScheme else ourLightColorScheme
+    val colorScheme = if (darkMode) ourDarkColorScheme else ourLightColorScheme
 
     val systemUiController = rememberSystemUiController()
     systemUiController.setSystemBarsColor(
@@ -56,15 +57,15 @@ fun LinuxTheme(content: @Composable () -> Unit) {
         fontFamily = techMonoFont,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        color = colorSchema.secondary
+        color = colorScheme.secondary
     )
 
     val typography = Typography(
-        subtitle2 = codeTextStyle
+        labelMedium = codeTextStyle
     )
 
     MaterialTheme(
-        colors = colorSchema,
+        colorScheme = colorScheme,
         typography = typography,
         content = content
     )

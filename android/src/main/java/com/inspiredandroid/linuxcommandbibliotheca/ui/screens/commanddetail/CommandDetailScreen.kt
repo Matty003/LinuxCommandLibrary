@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterialApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.inspiredandroid.linuxcommandbibliotheca.ui.screens.commanddetail
 
@@ -8,10 +8,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ListItem
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,8 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.inspiredandroid.linuxcommandbibliotheca.ui.composables.SectionTitle
-import com.inspiredandroid.linuxcommandbibliotheca.ui.shared.CommandView
+import com.inspiredandroid.linuxcommandbibliotheca.ui.composables.CommandView
 import com.linuxcommandlibrary.shared.TextCommandElement
 import databases.CommandSection
 
@@ -66,9 +65,9 @@ fun CommandSectionColumn(
     onNavigate: (String) -> Unit = {}
 ) {
     var collapsed by remember { mutableStateOf(false) }
-    ListItem(text = {
+    ListItem(headlineText = {
         Text(
-            section.title.uppercase(),
+            text = section.title.uppercase(),
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp
         )
@@ -78,21 +77,24 @@ fun CommandSectionColumn(
         })
     if (collapsed) {
         if (section.title == "TLDR") {
-            section.content.split("<b>").forEach {
-                val split = it.split("</b><br>")
-                if (split.size > 1) {
-                    SectionTitle(
-                        modifier = Modifier.padding(start = 8.dp, end = 8.dp),
-                        title = split[0]
-                    )
+            Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+                section.content.split("<b>").forEach {
+                    val split = it.split("</b><br>")
+                    if (split.size > 1) {
+                        Text(
+                            text = split[0],
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
 
-                    val command = "$ " + split[1].replace("<br>", "").replace("`", "")
-                    CommandView(command, listOf(TextCommandElement(command)), onNavigate)
+                        val command = "$ " + split[1].replace("<br>", "").replace("`", "")
+                        CommandView(command, listOf(TextCommandElement(command)), onNavigate)
+                    }
                 }
             }
         } else {
-            val color = MaterialTheme.colors.onSurface
-            ListItem(text = {
+            val color = MaterialTheme.colorScheme.onSurface
+            ListItem(headlineText = {
                 AndroidView(factory = { context ->
                     TextView(context).apply {
                         val content =

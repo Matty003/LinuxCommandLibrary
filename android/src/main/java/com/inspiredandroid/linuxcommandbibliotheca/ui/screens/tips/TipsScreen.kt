@@ -1,15 +1,14 @@
-@file:OptIn(ExperimentalMaterialApi::class)
-
 package com.inspiredandroid.linuxcommandbibliotheca.ui.screens.tips
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
@@ -19,8 +18,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.inspiredandroid.linuxcommandbibliotheca.ui.composables.NestedCommandView
 import com.inspiredandroid.linuxcommandbibliotheca.ui.composables.NestedText
 import com.inspiredandroid.linuxcommandbibliotheca.ui.composables.SectionTitle
-import com.inspiredandroid.linuxcommandbibliotheca.ui.shared.CommandView
-import com.inspiredandroid.linuxcommandbibliotheca.ui.shared.StaggeredVerticalGrid
+import com.inspiredandroid.linuxcommandbibliotheca.ui.composables.CommandView
+import com.inspiredandroid.linuxcommandbibliotheca.ui.composables.StaggeredVerticalGrid
 
 /* Copyright 2022 Simon Schubert
  *
@@ -39,20 +38,21 @@ import com.inspiredandroid.linuxcommandbibliotheca.ui.shared.StaggeredVerticalGr
 
 @Composable
 fun TipsScreen(onNavigate: (String) -> Unit = {}, viewModel: TipsViewModel = viewModel()) {
+
+    val gridCellPadding = 6.dp
     StaggeredVerticalGrid(
         maxColumnWidth = 420.dp,
         modifier = Modifier
-            .padding(4.dp)
             .verticalScroll(rememberScrollState())
             .semantics { contentDescription = "Scroll" }
     ) {
         viewModel.mergedTips.forEach { mergedTip ->
-            Card(
-                elevation = 4.dp, modifier = Modifier
-                    .padding(4.dp)
-                    .fillMaxWidth()
+
+            Card(modifier = Modifier
+                .padding(top = gridCellPadding, start = gridCellPadding, end = gridCellPadding)
+                .fillMaxWidth()
             ) {
-                Column(modifier = Modifier.padding(6.dp)) {
+                Column(modifier = Modifier.padding(12.dp)) {
 
                     SectionTitle(title = mergedTip.tip.title)
 
@@ -90,6 +90,8 @@ fun TipsScreen(onNavigate: (String) -> Unit = {}, viewModel: TipsViewModel = vie
                 }
             }
         }
+
+        Spacer(Modifier.height(gridCellPadding))
     }
 }
 

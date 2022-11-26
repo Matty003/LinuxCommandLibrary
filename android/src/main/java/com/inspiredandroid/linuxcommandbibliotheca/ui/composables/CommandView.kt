@@ -1,12 +1,12 @@
-package com.inspiredandroid.linuxcommandbibliotheca.ui.shared
+package com.inspiredandroid.linuxcommandbibliotheca.ui.composables
 
 import android.content.Intent
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
@@ -46,7 +46,7 @@ import com.linuxcommandlibrary.shared.databaseHelper
 
 @Composable
 fun CommandView(command: String, elements: List<CommandElement>, onNavigate: (String) -> Unit = {}) {
-    val codeColor = MaterialTheme.colors.primary
+    val codeColor = MaterialTheme.colorScheme.primary
     val annotatedString = remember(codeColor) {
         buildAnnotatedString {
             elements.forEachIndexed { index, element ->
@@ -79,7 +79,7 @@ fun CommandView(command: String, elements: List<CommandElement>, onNavigate: (St
             modifier = Modifier
                 .weight(1f)
                 .align(Alignment.CenterVertically),
-            style = MaterialTheme.typography.subtitle2,
+            style = MaterialTheme.typography.labelMedium,
             onClick = { offset ->
                 elements.forEachIndexed { index, element ->
                     if (element is UrlCommandElement) {

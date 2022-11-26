@@ -1,21 +1,22 @@
-package com.inspiredandroid.linuxcommandbibliotheca.ui.bars
+@file:OptIn(ExperimentalMaterial3Api::class)
+
+package com.inspiredandroid.linuxcommandbibliotheca.ui.composables
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -72,10 +73,8 @@ fun TopBar(
             Text("Commands",
                 modifier = Modifier.semantics { contentDescription = "TopAppBarTitle" })
         },
-            backgroundColor = MaterialTheme.colors.primary,
-            contentColor = Color.White,
-            navigationIcon = if (showSearch.value) {
-                {
+            navigationIcon = {
+                if (showSearch.value) {
                     IconButton(onClick = {
                         textFieldValue.value = TextFieldValue("")
                         showSearch.value = false
@@ -87,8 +86,6 @@ fun TopBar(
                         )
                     }
                 }
-            } else {
-                null
             }, actions = {
                 if (showSearch.value) {
                     OutlinedTextField(
@@ -106,8 +103,7 @@ fun TopBar(
                         colors = TextFieldDefaults.textFieldColors(
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
-                            backgroundColor = Color.Transparent,
-                            cursorColor = LocalContentColor.current.copy(alpha = LocalContentAlpha.current)
+                            cursorColor = LocalContentColor.current
                         ),
                         trailingIcon = {
                             IconButton(onClick = {
@@ -158,10 +154,8 @@ fun TopBar(
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.semantics { contentDescription = "TopAppBarTitle" })
             },
-            backgroundColor = MaterialTheme.colors.primary,
-            contentColor = Color.White,
-            navigationIcon = if (showBackIcon) {
-                {
+            navigationIcon = {
+                if (showBackIcon) {
                     IconButton(onClick = { onNavigateBack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
@@ -169,8 +163,6 @@ fun TopBar(
                         )
                     }
                 }
-            } else {
-                null
             },
             actions = {
                 if (showAppInfoIcon) {

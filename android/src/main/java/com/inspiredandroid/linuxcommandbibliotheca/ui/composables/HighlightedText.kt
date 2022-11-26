@@ -1,7 +1,7 @@
 package com.inspiredandroid.linuxcommandbibliotheca.ui.composables
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -33,7 +33,7 @@ fun HighlightedText(text: String, pattern: String) {
             splitText.forEachIndexed { index, s ->
                 append(s)
                 if (index != splitText.size - 1) {
-                    withStyle(style = SpanStyle(color = MaterialTheme.colors.primary)) {
+                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
                         append(pattern)
                     }
                 }

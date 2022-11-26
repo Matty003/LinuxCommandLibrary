@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterialApi::class, ExperimentalMaterialApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.inspiredandroid.linuxcommandbibliotheca.ui.screens.commandlist
 
@@ -7,10 +7,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.ListItem
-import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -71,7 +71,7 @@ fun CommandListScreen(
                 items = filteredCommands,
                 key = { it.id }) { command ->
                 ListItem(
-                    text = {
+                    headlineText = {
                         if (searchText.isEmpty()) {
                             Text(
                                 command.name,
@@ -83,7 +83,7 @@ fun CommandListScreen(
                             HighlightedText(command.name, searchText)
                         }
                     },
-                    trailing = {
+                    trailingContent = {
                         if (bookmarkedIds.contains(command.id)) {
                             Icon(
                                 painterResource(R.drawable.ic_bookmark_black_24dp),
@@ -91,7 +91,7 @@ fun CommandListScreen(
                             )
                         }
                     },
-                    secondaryText = {
+                    supportingText = {
                         if (searchText.isEmpty()) {
                             Text(
                                 command.description,
